@@ -1,0 +1,4 @@
+postcss.config.js linguist-detectable=false
+tailwind-process.js linguist-detectable=false
+tailwind.config.js linguist-detectable=false
+webpack.config.js linguist-detectable=false
