@@ -85,6 +85,17 @@ module.exports = {
                     'postcss-loader',
                 ].filter(Boolean),
             },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'svg-url-loader',
+                        options: {
+                            limit: 10000,
+                        },
+                    },
+                ],
+            },
         ]
     }
 };

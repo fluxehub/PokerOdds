@@ -5,6 +5,8 @@
   <ItemGroup>
     <Content Include="content\index.html" />
     <Content Include="content\tailwind-source.css" />
+    <Compile Include="src\Tailwind.fs" />
+    <Compile Include="src\Components\Card.fs" />
     <Compile Include="src\App.fs" />
     <Compile Include="src\Main.fs" />
   </ItemGroup>
