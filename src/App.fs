@@ -1,6 +1,7 @@
 module App
 
 open PokerOdds
+open Model
 open Feliz
 open PokerOdds.Components.Card
 open Tailwind
@@ -17,7 +18,7 @@ let App() =
         ]
 
         prop.children [
-            card ()
-            card ()
+            card { Rank = Ace; Suit = Clubs }
+            card { Rank = Two; Suit = Diamonds }
         ]
     ]
