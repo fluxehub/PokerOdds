@@ -30,8 +30,8 @@ let rankToAbbreviation rank =
  
 let suitToColor suit =
     match suit with
-    | Spades | Clubs -> "#000000"
-    | Hearts | Diamonds -> "#e83c3c"
+    | Spades | Clubs -> tw.``text-black``
+    | Hearts | Diamonds -> tw.``text-red-500``
 
 let suitToSvg suit =
     match suit with
@@ -40,8 +40,45 @@ let suitToSvg suit =
     | Diamonds -> diamonds
     | Clubs -> clubs
 
-[<ReactComponent>]
-let card card =
+let CardOutline =
+    Html.div [
+        prop.style [
+            style.height 134
+            style.width 95
+        ]
+
+        prop.classes [
+            tw.``rounded-lg``
+            tw.``border-4``
+            tw.``opacity-30``
+            tw.``border-dashed``
+            tw.``flex``
+            tw.``p-01``
+            tw.``mr-04``
+            tw.``mb-08``
+            tw.``items-center``
+            tw.``justify-center``
+        ]
+
+
+        prop.children [
+            Html.h1 [
+                prop.classes [
+                    tw.``text-6xl``
+                    tw.``font-black``
+                    tw.``select-none``
+                ]
+
+                prop.style [
+                    style.fontFamily "Manrope"
+                ]
+
+                prop.text "+"
+            ]
+        ]
+    ]
+
+let CardFilled card =
     Html.div [
         prop.style [
             style.height 134
@@ -55,6 +92,7 @@ let card card =
             tw.``flex``
             tw.``p-01``
             tw.``mr-04``
+            tw.``mb-08``
         ]
 
         prop.children [
@@ -64,11 +102,12 @@ let card card =
                     tw.``ml-02``
                     tw.``font-black``
                     tw.``text-4xl``
+                    tw.``select-none``
+                    suitToColor card.Suit
                 ]
 
                 prop.style [
-                    style.fontFamily "sofia-pro"
-                    style.color <| suitToColor card.Suit
+                    style.fontFamily "Manrope"
                 ]
 
                 prop.text (rankToAbbreviation card.Rank)
@@ -78,10 +117,18 @@ let card card =
                 prop.src (suitToSvg card.Suit)
 
                 prop.classes [
-                    tw.``align-middle``
-                    tw.``mx-auto``
+                    tw.``self-center``
+                    tw.``m-auto``
+                    tw.``h-10``
                     tw.``w-10``
+                    tw.``select-none``
                 ]
             ]
         ]
     ]
+
+[<ReactComponent>]
+let Card card =
+    match card with
+    | Some card -> CardFilled card
+    | None      -> CardOutline    

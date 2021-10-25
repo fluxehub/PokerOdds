@@ -1,9 +1,10 @@
 module App
 
 open PokerOdds
-open Model
 open Feliz
 open PokerOdds.Components.Card
+open PokerOdds.Components.Hand
+open Model
 open Tailwind
 
 [<ReactComponent>]
@@ -14,11 +15,17 @@ let App() =
             tw.``w-full``
             tw.``bg-green-700``
             tw.``p-08``
-            tw.flex
+            tw.``flex``
+            tw.``flex-col``
         ]
 
         prop.children [
-            card { Rank = Ace; Suit = Clubs }
-            card { Rank = Two; Suit = Diamonds }
+            Hand 1 [
+                Card <| Some { Rank = Two; Suit = Spades }
+                Card <| Some { Rank = Jack; Suit = Diamonds }
+            ]
+            Hand 2 [
+                Card <| None
+            ]
         ]
     ]

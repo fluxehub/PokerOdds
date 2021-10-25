@@ -8,6 +8,7 @@
     <Compile Include="src\Tailwind.fs" />
     <Compile Include="src\Model.fs" />
     <Compile Include="src\Components\Card.fs" />
+    <Compile Include="src\Components\Hand.fs" />
     <Compile Include="src\App.fs" />
     <Compile Include="src\Main.fs" />
   </ItemGroup>
