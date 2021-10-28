@@ -27,11 +27,11 @@ let rankToAbbreviation rank =
     | Queen -> "Q"
     | King  -> "K"
     | Ace   -> "A"
- 
+
 let suitToColor suit =
     match suit with
-    | Spades | Clubs -> tw.``text-black``
-    | Hearts | Diamonds -> tw.``text-red-500``
+    | Spades | Clubs -> [ tw.``text-black``; tw.``opacity-80`` ]
+    | Hearts | Diamonds -> [ tw.``text-red-500`` ]
 
 let suitToSvg suit =
     match suit with
@@ -42,36 +42,15 @@ let suitToSvg suit =
 
 let CardOutline =
     Html.div [
-        prop.style [
-            style.height 134
-            style.width 95
-        ]
+        prop.style [ style.height 134; style.width 95 ]
 
-        prop.classes [
-            tw.``rounded-lg``
-            tw.``border-4``
-            tw.``opacity-30``
-            tw.``border-dashed``
-            tw.``flex``
-            tw.``p-01``
-            tw.``mr-04``
-            tw.``mb-08``
-            tw.``items-center``
-            tw.``justify-center``
-        ]
-
+        prop.classes [ tw.``rounded-lg``; tw.``border-4``; tw.``opacity-30``; tw.``border-dashed``; tw.``flex``; tw.``p-01``; tw.``mr-04``; tw.``mb-08``; tw.``items-center``; tw.``justify-center`` ]
 
         prop.children [
             Html.h1 [
-                prop.classes [
-                    tw.``text-6xl``
-                    tw.``font-black``
-                    tw.``select-none``
-                ]
+                prop.classes [ tw.``text-6xl``; tw.``font-black``; tw.``select-none`` ]
 
-                prop.style [
-                    style.fontFamily "Manrope"
-                ]
+                prop.style [ style.fontFamily "Manrope" ]
 
                 prop.text "+"
             ]
@@ -80,49 +59,25 @@ let CardOutline =
 
 let CardFilled card =
     Html.div [
-        prop.style [
-            style.height 134
-            style.width 95
-        ]
+        prop.style [ style.height 134; style.width 95 ]
 
-        prop.classes [
-            tw.``bg-white``
-            tw.``rounded-lg``
-            tw.``shadow-lg``
-            tw.``flex``
-            tw.``p-01``
-            tw.``mr-04``
-            tw.``mb-08``
-        ]
+        prop.classes [ tw.``bg-white``; tw.``rounded-lg``; tw.``flex``; tw.``mr-04``; tw.``mb-08``; tw.``select-none`` ]
 
         prop.children [
-            Html.p [
-                prop.classes [
-                    tw.``absolute``
-                    tw.``ml-02``
-                    tw.``font-black``
-                    tw.``text-4xl``
-                    tw.``select-none``
-                    suitToColor card.Suit
-                ]
-
-                prop.style [
-                    style.fontFamily "Manrope"
-                ]
-
-                prop.text (rankToAbbreviation card.Rank)
-            ]
-
             Html.img [
                 prop.src (suitToSvg card.Suit)
 
-                prop.classes [
-                    tw.``self-center``
-                    tw.``m-auto``
-                    tw.``h-10``
-                    tw.``w-10``
-                    tw.``select-none``
-                ]
+                // prop.style [ style.width 22 ]
+                // ?
+                prop.classes [ tw.``absolute``; tw.``m-03``; tw.``w-06`` ]
+            ]
+
+            Html.h1 [
+                prop.classes ([ tw.``m-auto``; tw.``font-black``; tw.``text-6xl``; ] @ suitToColor card.Suit)
+
+                prop.style [ style.fontFamily "Manrope" ]
+
+                prop.text (rankToAbbreviation card.Rank)
             ]
         ]
     ]
@@ -131,4 +86,4 @@ let CardFilled card =
 let Card card =
     match card with
     | Some card -> CardFilled card
-    | None      -> CardOutline    
+    | None      -> CardOutline
